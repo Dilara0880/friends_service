@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <title>Список заявок в друзья</title>
+  </head>
+  <body>
+    <h1>Список заявок в друзья</h1>
+    {% if friend_requests %}
+      <ul>
+        {% for request in friend_requests %}
+          <li>
+            Отправитель: {{ request.sender.username }}
+            {% if request.status == 'pending' %}
+              <a href="{% url 'handle_friend_request' friend_request_id=request.id action='accept' %}">Принять</a>
+              <a href="{% url 'handle_friend_request' friend_request_id=request.id action='reject' %}">Отклонить</a>
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>Нет заявок в друзья.</p>
+    {% endif %}
+  </body>
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <title>Принять или отклонить заявку в друзья</title>
+  </head>
+  <body>
+    <h1>Принять или отклонить заявку в друзья</h1>
+    <p>Заявка в друзья от пользователя: {{ sender_username }}</p>
+    <form method="post" action="{% url 'handle_request' friend_request_id action%}">
+      {% csrf_token %}
+      <input type="hidden" name="friend_request_id" value="{{ friend_request_id }}">
+      <button type="submit" name="action" value="accept">Принять</button>
+      <button type="submit" name="action" value="reject">Отклонить</button>
+    </form>
+  </body>
+</html>
