@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <title>Отправить заявку в друзья</title>
+  </head>
+  <body>
+    <h1>Отправить заявку в друзья</h1>
+    {% if errors %}
+      <ul>
+        {% for error in errors %}
+          <li>{{ error }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+    <form method="post" action="{% url 'send_friend_request' %}">
+      {% csrf_token %}
+      <div>
+        <label for="user_id">Ваш ID:</label>
+        <input type="text" id="user_id" name="user_id" required>
+      </div>
+      <div>
+        <label for="friend_id">ID другого пользователя:</label>
+        <input type="text" id="friend_id" name="friend_id" required>
+      </div>
+      <button type="submit">Отправить заявку</button>
+    </form>
+  </body>
+</html>
